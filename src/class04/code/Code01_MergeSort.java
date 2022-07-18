@@ -45,6 +45,7 @@ public class Code01_MergeSort {
 	}
 
 	// 非递归方法实现
+	// 步长为1，做完一系列事后，步长*2
 	public static void mergeSort2(int[] arr) {
 		if (arr == null || arr.length < 2) {
 			return;
@@ -56,15 +57,19 @@ public class Code01_MergeSort {
 			// 当前左组的，第一个位置
 			int L = 0;
 			while (L < N) {
+				// 左组不够就结束了
 				if (mergeSize >= N - L) {
 					break;
 				}
+				// 左组右边界
 				int M = L + mergeSize - 1;
+				// 右组边界
 				int R = M + Math.min(mergeSize, N - M - 1);
+				// 找到左组和右组后，进行merge
 				merge(arr, L, M, R);
 				L = R + 1;
 			}
-			// 防止溢出
+			// 防止溢出,mergeSize*2后可能变负数
 			if (mergeSize > N / 2) {
 				break;
 			}
