@@ -28,6 +28,7 @@ public class Code02_SmallSum {
 				merge(arr, l, mid, r);
 	}
 
+	// 相比于归并排序，就加了三行代码，用于累加产生的小和
 	public static int merge(int[] arr, int L, int m, int r) {
 		int[] help = new int[r - L + 1];
 		int i = 0;
@@ -35,6 +36,7 @@ public class Code02_SmallSum {
 		int p2 = m + 1;
 		int res = 0;
 		while (p1 <= m && p2 <= r) {
+			// 当左组数严格小于右组时，会产生小和。
 			res += arr[p1] < arr[p2] ? (r - p2 + 1) * arr[p1] : 0;
 			help[i++] = arr[p1] < arr[p2] ? arr[p1++] : arr[p2++];
 		}
