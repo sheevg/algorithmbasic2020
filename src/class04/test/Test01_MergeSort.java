@@ -48,42 +48,59 @@ public class Test01_MergeSort {
         }
     }
 
-    // 非递归实现
+    /**
+     * 非递归实现
+     *
+     * 步长mergeSize从1开始，每经过一次循环，mergeSize * 2，mergeSize要小于数组长度N，可以等于
+     * 每一次循环中：
+     * 找到左组的左边界，中点，右组右边界，进行merge，使每一组有序
+     *
+     */
     public static void mergeSort2(int[] arr){
-        if(arr==null||arr.length<2){
+        if(arr == null || arr.length < 2){
             return;
         }
         int N = arr.length;
-        // 起始步长为1
         int mergeSize = 1;
-        // 每次循环之后，步长*2
         while(mergeSize < N){
-            // 左组左边界下标，在每一次大循环中，左边界都从0开始
+            // 每一个左组的左边界
             int L = 0;
-
-            // 一次大循环里面，需要很多小循环进行merge，L可以等于N-1
+            // 处理每一组，之后更新L。L不能超过N
             while(L < N){
-                // 确定中点位置，存在左组不满足一个组的情况
-                if(mergeSize >= N-L){ // L+mergeSize > N ,防溢出，L是从0开始的，所以这里必须是要>
+                // 如果在小循环中L+mergeSize >= N了，这时是最后一组的左组不够一组了，或者说刚好一组，此时是不需要merge的
+                if(L+mergeSize >= N){
                     break;
                 }
-                // 左组右边界
+                // 如果够一组，就接着确定M和R
                 int M = L + mergeSize -1;
-                // 右组右边界，也存在右组不够的情况
-                int R = Math.min(L+2*mergeSize-1,N-1);
+                // 左边够一组，右边可能不够一组，R取值有两个可能
+                int R = Math.min(arr.length-1,M+mergeSize);
+                // 进行merge
                 merge(arr,L,M,R);
+                // 更新L
                 L = R+1;
             }
+            // 当一个步长处理完了之后，要更新mergeSize，这里提前判断2倍的mergeSize是否会溢出
+            // 这里mergeSize = N/2的时候，就是数组两边都是有序的了，还需要最后一次，所以这里不能带等号
+            // 下一次是mergeSize = N
             if(mergeSize > N/2){
                 break;
             }
-
-
-            mergeSize = mergeSize<<1;
+            mergeSize <<= 1;
         }
-        
-        
-        
+    }
+
+    public static void mergeSort3(int[] arr){
+        if(arr == null || arr.length <2){
+            return;
+        }
+        int mergeSize = 1; // 步长，半个组（左组）的长度
+        int N = arr.length;
+        while(mergeSize < N){ // 这里要考虑当mergeSize = N时，还要往下走吗
+
+
+
+        }
     }
 
     public static int[] generateRandomArray(int maxSize, int maxValue) {
