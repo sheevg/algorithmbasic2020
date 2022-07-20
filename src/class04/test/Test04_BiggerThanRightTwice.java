@@ -20,14 +20,29 @@ public class Test04_BiggerThanRightTwice {
     }
 
     public static int merge(int[] arr,int L,int M,int R){
+//        int res = 0;
+//        int windowR = M + 1;
+//        // 外层控制左组L的移动，L不变，i是指针
+//        for (int i = L; i <= M; i++) {
+//            // 内层控制windowR的移动
+//            while(windowR <= R && arr[i] > 2*arr[windowR]){
+//                windowR++; // 如果右边全满足，windowR最后的值就是R+1
+//            }
+//            res += windowR-M-1;
+//        }
+
+        int p3 = M;
+        int p4 = R;
         int res = 0;
-        int windowR = M+1; // 范围是[M+1,windowR)
-        for (int i = 0; i <= L; i++) {
-            while(windowR <= R && arr[i]>2 * arr[windowR]){
-                 windowR++;
+        while(p3 >= L && p4 >= M+1){
+            if(arr[p3] > 2*arr[p4]){
+                p3 --;
+                res += p4-M;
+            }else{
+                p4 --;
             }
-            res +=windowR-M+1;
         }
+
 
         int[] help = new int[R - L + 1];
         int i = 0;

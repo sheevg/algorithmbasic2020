@@ -38,6 +38,7 @@ public class Code02_SmallSum {
 		while (p1 <= m && p2 <= r) {
 			// 当左组数严格小于右组时，会产生小和。
 			res += arr[p1] < arr[p2] ? (r - p2 + 1) * arr[p1] : 0;
+			// 相等的时候是复制右边，只有严格小于的时候才复制左边
 			help[i++] = arr[p1] < arr[p2] ? arr[p1++] : arr[p2++];
 		}
 		while (p1 <= m) {

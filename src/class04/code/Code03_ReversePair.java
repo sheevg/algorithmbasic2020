@@ -25,6 +25,7 @@ public class Code03_ReversePair {
 	public static int merge(int[] arr, int L, int m, int r) {
 		int[] help = new int[r - L + 1];
 		int i = help.length - 1;
+		// 从后往前开始遍历
 		int p1 = m;
 		int p2 = r;
 		int res = 0;
