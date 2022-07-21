@@ -1,4 +1,4 @@
-package class05;
+package class05.code;
 
 // 这道题直接在leetcode测评：
 // https://leetcode.com/problems/count-of-range-sum/
@@ -58,6 +58,14 @@ public class Code01_CountOfRangeSum {
 			arr[L + i] = help[i];
 		}
 		return ans;
+	}
+
+	public static void main(String[] args) {
+		int[] arr = {2147483647,-2147483648,-1,0};
+		int lower = -1;
+		int upper = 0;
+		int i = countRangeSum(arr,-1,0);
+		System.out.println(i);
 	}
 
 }

@@ -1,4 +1,4 @@
-package class05;
+package class05.code;
 
 public class Code02_PartitionAndQuickSort {
 
