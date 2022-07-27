@@ -32,6 +32,7 @@ public class Code02_PartitionAndQuickSort {
 
 	// arr[L...R] 玩荷兰国旗问题的划分，以arr[R]做划分值
 	// <arr[R] ==arr[R] > arr[R]
+	// 返回的数组是等于区域的下标
 	public static int[] netherlandsFlag(int[] arr, int L, int R) {
 		if (L > R) { // L...R L>R
 			return new int[] { -1, -1 };

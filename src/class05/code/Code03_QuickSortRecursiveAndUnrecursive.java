@@ -76,9 +76,11 @@ public class Code03_QuickSortRecursiveAndUnrecursive {
 		int[] equalArea = netherlandsFlag(arr, 0, N - 1);
 		int el = equalArea[0];
 		int er = equalArea[1];
+
 		Stack<Op> stack = new Stack<>();
 		stack.push(new Op(0, el - 1));
 		stack.push(new Op(er + 1, N - 1));
+
 		while (!stack.isEmpty()) {
 			Op op = stack.pop(); // op.l ... op.r
 			if (op.l < op.r) {
@@ -102,6 +104,7 @@ public class Code03_QuickSortRecursiveAndUnrecursive {
 		int[] equalArea = netherlandsFlag(arr, 0, N - 1);
 		int el = equalArea[0];
 		int er = equalArea[1];
+
 		Queue<Op> queue = new LinkedList<>();
 		queue.offer(new Op(0, el - 1));
 		queue.offer(new Op(er + 1, N - 1));
@@ -112,6 +115,7 @@ public class Code03_QuickSortRecursiveAndUnrecursive {
 				equalArea = netherlandsFlag(arr, op.l, op.r);
 				el = equalArea[0];
 				er = equalArea[1];
+
 				queue.offer(new Op(op.l, el - 1));
 				queue.offer(new Op(er + 1, op.r));
 			}
