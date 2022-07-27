@@ -1,4 +1,4 @@
-package class06;
+package class06.code;
 
 import java.util.ArrayList;
 import java.util.Arrays;

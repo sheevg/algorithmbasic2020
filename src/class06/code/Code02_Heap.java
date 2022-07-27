@@ -1,4 +1,4 @@
-package class06;
+package class06.code;
 
 import java.util.Comparator;
 import java.util.PriorityQueue;
@@ -7,7 +7,7 @@ public class Code02_Heap {
 
 	public static class MyMaxHeap {
 		private int[] heap;
-		private final int limit;
+		private final int limit; // 堆的最大容量
 		private int heapSize;
 
 		public MyMaxHeap(int limit) {
