@@ -4,36 +4,38 @@ import java.util.Arrays;
 import java.util.PriorityQueue;
 
 /**
- * k=3，对于0位置：
- * 0移动到0需要0
- * 1移动到0需要1
- * ...
- * 3移动到0需要3
- * 所以0~3先入堆，就是入4个
  *
+ * 已知一个几乎有序的数组，几乎有序是指如果把数组排好序的话，每个元素移动的距离可以不超过K，并且K相对于数组来说比较小。
+ *
+ * 要注意在arr[]中写i++有时是会出现数组越界异常的，最好就是写两步，只是看起来不整齐而已
  *
  */
 public class Test04_SortArrayDistanceLessK {
     public static void sortedArrDistanceLessK(int[] arr,int k){
-        if (k == 0) {
+        if(arr == null||arr.length<2){
             return;
         }
-        // 默认小根堆
+        // 前k+1个数入堆。出循环时index=k+1
         PriorityQueue<Integer> heap = new PriorityQueue<>();
+        // 记录数组入堆的位置
         int index = 0;
-        // 0...K-1入堆
-        for (; index <= Math.min(arr.length - 1, k - 1); index++) {
+        for (; index <Math.min(arr.length,k+1) ; index++) {
             heap.add(arr[index]);
         }
-        // 此时index=k
+        // 弹出一个，入堆一个直到数组的最后一个
+        // 记录数组设置的位置
         int i = 0;
-        for (; index < arr.length; i++, index++) {
+        for(;index < arr.length;index++,i++){
+            Integer poll = heap.poll();
+            arr[i] = poll;
             heap.add(arr[index]);
-            arr[i] = heap.poll();
         }
-        while (!heap.isEmpty()) {
-            arr[i++] = heap.poll();
+        // 弹出堆中所有的
+        while(!heap.isEmpty()){
+            arr[i]=heap.poll();
+            i++;
         }
+
     }
 
     // for test
