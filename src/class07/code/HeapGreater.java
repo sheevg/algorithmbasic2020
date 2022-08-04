@@ -98,6 +98,7 @@ public class HeapGreater<T> {
 	private void heapify(int index) {
 		int left = index * 2 + 1;
 		while (left < heapSize) {
+			// 右比左小，则返回右，所以是小根堆
 			int best = left + 1 < heapSize && comp.compare(heap.get(left + 1), heap.get(left)) < 0 ? (left + 1) : left;
 			best = comp.compare(heap.get(best), heap.get(index)) < 0 ? best : index;
 			if (best == index) {
