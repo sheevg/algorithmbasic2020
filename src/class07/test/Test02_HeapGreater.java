@@ -38,7 +38,39 @@ public class Test02_HeapGreater<T extends Comparable<T>> {
 
     // 入堆
     public void push(T t){
+        heap.add(t);
+        indexMap.put(t,heapSize);
+        heapInsert(heapSize);
+        heapSize++;
+    }
 
+    public T pop(){
+        T t = heap.get(heapSize - 1);
+        indexMap.remove(t);
+        heap.remove(t);
+        return t;
+    }
+
+    public void remove(T t){
+        // 找到最后一个
+        T replace = heap.get(heapSize - 1);
+        // 找到要移除对象的下标
+        Integer removeIndex = indexMap.get(t);
+        // 从map中移除
+        indexMap.remove(t);
+        // list移除最后一个
+        heap.remove(--heapSize);
+        if(t!=replace){
+            heap.set(removeIndex,replace);
+            indexMap.put(replace,removeIndex);
+            resign(removeIndex);
+        }
+
+    }
+
+    private void resign(int index){
+        heapify(index);
+        heapInsert(index);
     }
 
     // 对堆中index位置的元素进行heapInsert
@@ -58,9 +90,13 @@ public class Test02_HeapGreater<T extends Comparable<T>> {
             // 找到左右孩子中最大的
             int biggest = left+1 < heapSize && heap.get(left+1).compareTo(heap.get(left)) > 0 ? left+1 : left;
             // 比较子节点和父节点
-            if(heap.get(index).compareTo(heap.get(biggest)) > 0){
+            if(heap.get(index).compareTo(heap.get(biggest)) < 0){
                 break;
             }
+            // 父节点比孩子小则下沉
+            swap(biggest,index);
+            index = biggest;
+            left = index*2+1;
         }
     }
 

@@ -1,4 +1,4 @@
-package class07;
+package class07.code;
 
 public class Inner<T> {
 	public T value;

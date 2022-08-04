@@ -1,4 +1,4 @@
-package class07;
+package class07.code;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -54,13 +54,22 @@ public class HeapGreater<T> {
 	}
 
 	public void remove(T obj) {
+		// 找到最后一个
 		T replace = heap.get(heapSize - 1);
+		// 拿到要remove的下标
 		int index = indexMap.get(obj);
+		// 从map中移除
 		indexMap.remove(obj);
+		// 从heap中移除
 		heap.remove(--heapSize);
+
+		// 如果要移除的对象不是最后一个
 		if (obj != replace) {
+			// 将index的位置放上最后一个
 			heap.set(index, replace);
+			// 反向所以表中加入
 			indexMap.put(replace, index);
+			// 重置
 			resign(replace);
 		}
 	}
