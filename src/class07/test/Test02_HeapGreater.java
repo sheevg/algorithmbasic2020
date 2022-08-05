@@ -71,7 +71,7 @@ public class Test02_HeapGreater<T extends Comparable<T>> {
         // 从索引表中移除
         indexMap.remove(t);
 
-        if(tIndex != heapSize-1){
+        if(tIndex != heapSize){
             // 重置
             resign(tIndex);
         }
